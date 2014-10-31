@@ -17,6 +17,10 @@ public class Soldado {
 		posisicionSoldado = posicion;
 	}
 	
+	public Soldado(final GImage soldadoImagen) {
+		soldadoImg = soldadoImagen;
+	}
+	
 	/**
 	 * @return Retorna a la imagen
 	 */
