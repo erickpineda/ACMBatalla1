@@ -6,13 +6,14 @@ import acm.graphics.GImage;
 
 public class Ejercito {
 
-	private int posicionInicial;
-	private int posicionFinal;
-	private ArrayList<Soldado> soldados = null;
+	private int posicionInicial = 0;
+	private int posicionFinal = 1100;
+	private ArrayList<Soldado> soldados;
 	private String nombreEjercito;
 	private int direccion;
 	private GImage unSoldado;
-	
+	private int cantidadSoldados = (int) Math.random() * 20 + 15;
+
 	/**
 	 * Contructor de ejercitos para los soldados.
 	 * 
@@ -49,16 +50,26 @@ public class Ejercito {
 			soldados.add(soldado);
 		}
 	}
-	
-	public void agregarSoldadosEjercito(ArrayList<Soldado> soldado){
+
+	public void agregarSoldadosEjercito(ArrayList<Soldado> soldado,
+			String aleatorio) {
 		soldado = soldados;
-		Iterator<Soldado> itera = soldado.iterator();
-		
-		while (itera.hasNext()){
-			Soldado s = itera.next();
-			
-			soldado.add(new Soldado(unSoldado));
+
+		for (int i = 0; i < cantidadSoldados; i++) {
+			soldado.add(new Soldado(aleatorio));
 		}
+	}
+
+	public ArrayList<Soldado> soldadosFormacionInicial(
+			ArrayList<Soldado> soldado) {
+		soldado = soldados;
+
+		for (int i = 0; i < soldado.size(); i++) {
+			soldado.get(i).setPosicionSoldado(0,
+					i * soldado.get(i).getSoldadoImagen().getHeight());
+
+		}
+		return soldado;
 	}
 
 	/**
@@ -68,8 +79,27 @@ public class Ejercito {
 	 *            posición para los 2 ejercitos
 	 */
 	public void formarSoldados(final int posicionSoldados) {
-		
-		
+
+		if (posicionSoldados == 0) {
+
+		}
+	}
+
+	public void moverEjercito(ArrayList<Soldado> soldado) {
+		soldado = soldados;
+		Iterator<Soldado> itera = soldado.iterator();
+
+		while (itera.hasNext()) {
+			Soldado s = itera.next();
+
+			for (int i = 0; i < posicionFinal; i++) {
+				for (Soldado m : soldado) {
+					m.moverSoldado(Math.random() * 15 + 10, 0);
+					s.getSoldadoImagen().pause(30);
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -85,6 +115,10 @@ public class Ejercito {
 	}
 
 	public void limiteLlegada() {
+
+		if (posicionInicial == posicionFinal) {
+
+		}
 
 	}
 
